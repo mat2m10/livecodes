@@ -1,7 +1,6 @@
 require_relative "view"
 require_relative "recipe"
-require_relative "scrape_letscookfrench_service"
-
+require_relative "scrape_allrecipes_service"
 class Controller
   def initialize(cookbook)
     @cookbook = cookbook
@@ -44,7 +43,7 @@ class Controller
     # 1. Ask user for a keyword
     term = @view.ask_user_for("search")
     # 2. Scrape LetsCookFrench
-    results = ScrapeLetscookfrenchService.new(term).call
+    results = ScrapeAllrecipesService.new(term).call
     # 3. Display results
     @view.display(results)
     # 4. Ask for the recipe to import
