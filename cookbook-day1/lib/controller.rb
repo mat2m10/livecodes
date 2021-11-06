@@ -20,9 +20,9 @@ class Controller
     # 2. Ask user for a description (view)
     description = @view.ask_user_for("description")
     # 3. Create recipe (model)
-    recipe = Recipe.new(name, description)
+    recipe = Recipe.new(name: name, description: description)
     # 4. Store in cookbook (repo)
-    @cookbook.add_recipe(recipe)
+    @cookbook.add_recipe(recipe.to_i - 1)
     # 5. Display
     display_recipes
   end
@@ -40,9 +40,10 @@ class Controller
 
   def import
     term = @view.ask_user_for('What is lekker?')
-    temp = ScrapeOnline.new(term).call
-    @view.display(temp)
-    @view.ask_user_for('Which one is the lekkerste?')
+    recepies = ScrapeOnline.new(term).call
+    @view.display(recepies)
+    index_recepie = @view.ask_user_for('Which one is the lekkerste?')
+    @cookbook.add_recipe(recepies[index_recepie.to_i - 1])
   end
 
   private
