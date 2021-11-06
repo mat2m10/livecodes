@@ -41,7 +41,7 @@ class Router
     puts "1 - List all recipes"
     puts "2 - Create a new recipe"
     puts "3 - Destroy a recipe"
-    puts "4 - Import from Marmiton"
+    puts "4 - Import from All Recipes"
     puts "5 - Mark recipe as done"
     puts "6 - Stop and exit the program"
     print "> "
