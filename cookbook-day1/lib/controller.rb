@@ -1,5 +1,6 @@
 require_relative "view"
 require_relative "recipe"
+require_relative "scrape_online"
 
 class Controller
   def initialize(cookbook)
@@ -35,6 +36,13 @@ class Controller
     @cookbook.remove_recipe(index)
     # 4. Display
     display_recipes
+  end
+
+  def import
+    term = @view.ask_user_for('What is lekker?')
+    temp = ScrapeOnline.new(term).call
+    @view.display(temp)
+    @view.ask_user_for('Which one is the lekkerste?')
   end
 
   private
